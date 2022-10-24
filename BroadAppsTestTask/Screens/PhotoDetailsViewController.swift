@@ -19,6 +19,12 @@ final class PhotoDetailsViewController: UIViewController {
     private let model = FavoriteModel()
     private let defaults = UserDefaults.standard
     
+    private let alert: UIAlertController = {
+        let alert = UIAlertController(title: "Success", message: "Photo added to your favorites", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        return alert
+    }()
+    
     private let photoImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -67,6 +73,7 @@ final class PhotoDetailsViewController: UIViewController {
     
     @objc private func addToFavoritesAction() {
         saveData()
+        present(alert, animated: true, completion: nil)
     }
     
 //    MARK: - Configurate
